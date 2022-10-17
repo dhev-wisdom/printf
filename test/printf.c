@@ -20,7 +20,6 @@ int _printf(const char *format, ...)
 	va_start(arg, format);
 
 	counter = 0;
-
 	for (; *format != '\0'; format++)
 	{
 		if (*format != '%')
@@ -39,11 +38,15 @@ int _printf(const char *format, ...)
 					i = va_arg(arg, int);
 					write(1, &i, 1);
 					counter++;
+					break;
+				case '%':
+					c = *format;
+					write(1, &c, 1);
+					counter++;
+					break;
 			}
 		}
 	}
-
 	va_end(arg);
-
 	return (counter);
 }
