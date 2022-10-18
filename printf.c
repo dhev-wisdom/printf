@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * _printf - a function that produces output according to a format
  * write output to stdout, the standard output stream
@@ -12,6 +13,8 @@ int _printf(const char *format, ...)
 	int counter = 0, i;
 	const char *p;
 	char c, *s;
+	int h, len;
+	char buffer[33];
 	va_list arg;
 
 	va_start(arg, format);
@@ -45,6 +48,28 @@ int _printf(const char *format, ...)
 						counter++;
 					}
 					counter--;
+					break;
+				case 'd':
+					i = va_arg(arg, int);
+					if (i < 0)
+					{
+						i *= -1;
+						write(1, "-", 1);
+					}
+					h = convertToBaseTen(i, 10);
+					len = digitNum(h);
+					write(1, (itoa(h, buffer, 10)), len);
+					break;
+				case 'i':
+					i = va_arg(arg, int);
+					if (i < 0)
+					{
+						i *= -1;
+						write(1, "-", 1);
+					}
+					h = convertToBaseTen(i, 10);
+					len = digitNum(h);
+					write(1, (itoa(h, buffer, 10)), len);
 					break;
 			}
 		}
