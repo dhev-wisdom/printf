@@ -9,32 +9,29 @@
  */
 int _printf(const char *format, ...)
 {
-	int counter;
-	unsigned int i;
+	int counter = 0, i;
+	const char *p;
 	char c, *s;
 	va_list arg;
 
 	va_start(arg, format);
-
-	counter = 0;
-	for (; *format != '\0'; format++)
+	for (p = format; *p != '\0'; p++)
 	{
-		if (*format != '%')
+		if (*p != '%')
 		{
-			c = *format;
+			c = *p;
 			write(1, &c, 1);
 		}
 		else
 		{
-			format++;
-			switch (*format)
+			switch (*++p)
 			{
 				case 'c':
 					i = va_arg(arg, int);
 					write(1, &i, 1);
 					break;
 				case '%':
-					c = *format;
+					c = *p;
 					write(1, &c, 1);
 					break;
 				case 's':
