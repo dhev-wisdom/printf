@@ -10,11 +10,8 @@
 int _printf(const char *format, ...)
 {
 	int counter;
-
 	unsigned int i;
-
-	char c;
-
+	char c, *s;
 	va_list arg;
 
 	va_start(arg, format);
@@ -26,26 +23,32 @@ int _printf(const char *format, ...)
 		{
 			c = *format;
 			write(1, &c, 1);
-			counter++;
 		}
 		else
 		{
 			format++;
-
 			switch (*format)
 			{
 				case 'c':
 					i = va_arg(arg, int);
 					write(1, &i, 1);
-					counter++;
 					break;
 				case '%':
 					c = *format;
 					write(1, &c, 1);
-					counter++;
+					break;
+				case 's':
+					for (s = va_arg(arg, char *); *s; s++)
+					{
+						c = *s;
+						write(1, &c, 1);
+						counter++;
+					}
+					counter--;
 					break;
 			}
 		}
+		counter++;
 	}
 	va_end(arg);
 	return (counter);
