@@ -31,7 +31,8 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					i = va_arg(arg, int);
-					write(1, &i, 1);
+					if (i)
+						write(1, &i, 1);
 					break;
 				case '%':
 					c = *p;
@@ -41,6 +42,8 @@ int _printf(const char *format, ...)
 					for (s = va_arg(arg, char *); *s; s++)
 					{
 						c = *s;
+						if (!c)
+							return (-1);
 						write(1, &c, 1);
 						counter++;
 					}
