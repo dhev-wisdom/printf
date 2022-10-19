@@ -5,7 +5,7 @@
  * @num: The number to be converted
  * @base: The base of the number to be converted.
  *
- * Return: @num in base 10.
+ * Return: num in base 10.
  */
 
 int _pow(int y, int z)
