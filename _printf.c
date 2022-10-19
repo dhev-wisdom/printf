@@ -10,10 +10,9 @@
  */
 int _printf(const char *format, ...)
 {
-	int counter = 0, i;
+	int counter = 0, i, len;
 	const char *p;
 	char c, *s;
-	int h, len;
 	char buffer[33];
 	va_list arg;
 
@@ -53,16 +52,6 @@ int _printf(const char *format, ...)
 					counter--;
 					break;
 				case 'd':
-					i = va_arg(arg, int);
-					if (i < 0)
-					{
-						i *= -1;
-						write(1, "-", 1);
-					}
-					h = convertToBaseTen(i, 10);
-					len = digitNum(h);
-					write(1, (itoa(h, buffer, 10)), len);
-					break;
 				case 'i':
 					i = va_arg(arg, int);
 					if (i < 0)
@@ -70,9 +59,9 @@ int _printf(const char *format, ...)
 						i *= -1;
 						write(1, "-", 1);
 					}
-					h = convertToBaseTen(i, 10);
-					len = digitNum(h);
-					write(1, (itoa(h, buffer, 10)), len);
+					len = digitNum(i);
+					write(1, (itoa(i, buffer, 10)), len);
+					counter = counter + len - 1;
 					break;
 			}
 		}
