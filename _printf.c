@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	const char *p;
 	char c, *s;
 	char buffer[33];
+	char c, *s, buffer[33];
 	va_list arg;
 
 	va_start(arg, format);
@@ -43,11 +44,12 @@ int _printf(const char *format, ...)
 				case 's':
 					for (s = va_arg(arg, char *); *s; s++)
 					{
-						c = *s;
-						if (!c)
-							return (-1);
-						write(1, &c, 1);
-						counter++;
+						if (s)
+						{
+							c = *s;
+							write(1, &c, 1);
+							counter++;
+						}
 					}
 					counter--;
 					break;
