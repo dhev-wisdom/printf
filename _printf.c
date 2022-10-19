@@ -12,8 +12,6 @@ int _printf(const char *format, ...)
 {
 	int counter = 0, i, len;
 	const char *p;
-	char c, *s;
-	char buffer[33];
 	char c, *s, buffer[33];
 	va_list arg;
 
@@ -64,6 +62,13 @@ int _printf(const char *format, ...)
 					len = digitNum(i);
 					write(1, (itoa(i, buffer, 10)), len);
 					counter = counter + len - 1;
+					break;
+				case 'b':
+					i = va_arg(arg, int);
+					if (i < 0)
+						return (-1);
+
+					decToBin(i);
 					break;
 			}
 		}
