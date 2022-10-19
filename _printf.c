@@ -61,6 +61,7 @@ int _printf(const char *format, ...)
 					}
 					len = digitNum(i);
 					write(1, (itoa(i, buffer, 10)), len);
+					counter = counter + len - 1;
 					break;
 			}
 		}
