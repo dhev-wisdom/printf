@@ -5,16 +5,21 @@
  * @n: The decimal number to be converted
  */
 
-void decToBin(int n)
+int decToBin(int n)
 {
-	int a[94], i, c;
+	int a[94], i, c, count = 0;
 	char buffer[94];
 
 	if (n == 0)
 	{
 		write(1, itoa(0, buffer, 10), 1);
-		return;
+		write(1, itoa(0, buffer, 10), 1);
+		count += 2;
+		return (count);
 	}
+
+	if (n < 0)
+		n *= -1;
 
 	for (i = 0; n > 0; i++)
 	{
@@ -26,5 +31,8 @@ void decToBin(int n)
 	{
 		c = a[i];
 		write(1, itoa(c, buffer, 10), 1);
+		count++;
 	}
+
+	return (count);
 }

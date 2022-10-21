@@ -10,7 +10,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int counter = 0, i, len;
+	int counter = 0, i, len, hold;
 	const char *p;
 	char c, *s, buffer[33];
 	va_list arg;
@@ -19,6 +19,7 @@ int _printf(const char *format, ...)
 
 	if (!(format))
 		return (-1);
+
 	for (p = format; *p != '\0'; p++)
 	{
 		if (*p != '%')
@@ -65,15 +66,15 @@ int _printf(const char *format, ...)
 					break;
 				case 'b':
 					i = va_arg(arg, int);
-					if (i < 0)
-						return (-1);
 
-					decToBin(i);
+					hold = decToBin(i);
+					counter += (hold - 1);
 					break;
 			}
 		}
 		counter++;
 	}
 	va_end(arg);
+
 	return (counter);
 }

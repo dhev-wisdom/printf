@@ -11,7 +11,7 @@ void swap(char *x, char *y);
 char* reverse(char *buffer, int i, int j);
 char* itoa(int value, char* buffer, int base);
 int digitNum(int n);
-void decToBin(int);
+int decToBin(int);
 
 
 #endif /* MAIN_H */

@@ -38,7 +38,17 @@ int main(void)
 	len2 = printf("Percent:[%%]\n");
 	_printf("Len:[%d]\n", len);
 	printf("Len:[%d]\n", len2);
-	_printf("Unknown:[%r]\n");
-	printf("Unknown:[%r]\n");
+	/** _printf("Unknown:[%r]\n"); **/
+	/** printf("Unknown:[%r]\n"); **/
+	_printf("Convert %d to binary: %b\n", 2453, 2453);
+	_printf("Binary form of 0 is %b\n", 0);
+	_printf("7 to binary: %b. Print with your printf function\n", 7);
+	_printf("%b\n", -1024);
+	printf("10000000000\n");
+	_printf("%b\n", 0);
+	_printf("There is %b bytes in %b KB\n", 1024, 1);
+	printf("There is 10000000000 bytes in 1 KB\n");
+	_printf("%b - %b = %b\n", 2048, 1024, 1024);
+	printf("100000000000 - 10000000000 = 10000000000\n");
 	return (0);
 }
